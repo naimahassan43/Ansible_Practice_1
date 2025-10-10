@@ -1,10 +1,15 @@
+local_test ansible_connection=local
+
 [vios_group]
-r1 ansible_host=192.168.117.61
+r1 ansible_host=192.168.117.61  ansible_user=ansible_admin ansible_ssh_private_key_file=/home/naima/.ssh/id_rsa
 r2 ansible_host=192.168.117.62
+
+# [vios_group:vars]
+# ansible_user=admin1
+# ansible_password=admin1
 
 [csr_group]
 r3 ansible_host=192.168.117.63
-
 
 [routers:children]
 vios_group

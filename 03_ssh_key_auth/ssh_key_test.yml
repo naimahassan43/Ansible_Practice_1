@@ -6,6 +6,6 @@
       ansible.builtin.debug:
         msg: 
           - "{{ ansible_config_file }}"
-          #- "{{ ansible_facts }}"
+          - "{{ ansible_facts }}"
           - "{{ ansible_user }}"
           - "{{ inventory_file }}"
