@@ -21,7 +21,8 @@ all:
                     33333538336364353261336535626565323961343333306365396639646465363163303566383437
                     6630386362306430310a383564326464643532353039616435653062643536376532666566663066
                     3239
-     
+          #ip_domain_name: from_inv_file.com
+
       children:
         csr_group:
           hosts:
@@ -33,6 +34,7 @@ all:
               ansible_host: 192.168.117.61
               ansible_ssh_private_key_file: /home/naima/.ssh/id_rsa
               ansible_user: ansible_admin
+              #ip_domain_name: r1_var.com
             r2:
               ansible_host: 192.168.117.62
     ungrouped:
