@@ -1,5 +1,5 @@
 ---
-- name: Ansible Facts demo
+- name: Ansible debug module
   hosts: r3
   tasks:
     - name: Print with Literal Block Scalar from var
@@ -21,3 +21,7 @@
         msg: >
           IOS Type is: {{ ansible_facts.net_iostype}}
           Net Model No is: {{ ansible_facts.net_model}}
+    
+    - name: Print with Literal Block Scalar using var
+      ansible.builtin.debug:
+        var: test_var
