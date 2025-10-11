@@ -1,0 +1,33 @@
+---
+- name: Cisco ios_command-Module to run commands on remote devices 
+  hosts: routers
+  gather_facts: false
+  tasks:
+    - name: Send command
+      cisco.ios.ios_command:
+        commands:
+          - show version
+          - show ip interface brief
+          #- show run
+        match: all
+        wait_for:
+          - result[0] contains cisco
+          - result[1] contains GigabitEthernet
+
+      register: show_command_output
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg:  "{{ show_command_output }}"
+
+    # - name: Print Show Version
+    #   ansible.builtin.debug:
+    #     msg: "{{ show_command_output.stdout_lines[0] }}"
+
+    # - name: Print Show IP Interface Brief
+    #   ansible.builtin.debug:
+    #     msg: "{{ show_command_output.stdout_lines[1] }}"
+    
+    # - name: Print Show Running Config
+    #   ansible.builtin.debug:
+    #     msg: "{{ show_command_output.stdout_lines[2] }}"
