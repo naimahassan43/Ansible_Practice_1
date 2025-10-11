@@ -1,0 +1,23 @@
+---
+- name: Ansible Facts demo
+  hosts: r3
+  tasks:
+    - name: Print with Literal Block Scalar from var
+      ansible.builtin.debug:
+        msg: "{{ test_var}}"
+
+    - name: Print with Folded Block Scalar from var
+      ansible.builtin.debug:
+        msg: "{{ test_var_1}}"
+
+    - name: Print with Literal Block Scalar
+      ansible.builtin.debug:
+        msg: |
+          IOS Type is: {{ ansible_facts.net_iostype }}
+          Net Model No is: {{ ansible_facts.net_model}}
+         
+    - name: Print with Folded Block Scalar
+      ansible.builtin.debug:
+        msg: >
+          IOS Type is: {{ ansible_facts.net_iostype}}
+          Net Model No is: {{ ansible_facts.net_model}}
