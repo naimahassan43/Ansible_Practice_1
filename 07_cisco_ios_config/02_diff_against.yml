@@ -1,16 +1,16 @@
 ---
 - name: Cisco ios_config-Module to manage configuration sections 
-  hosts: routers
+  hosts: r1
   gather_facts: false
   tasks:
-    - name: Print Date and Time
-      ansible.builtin.debug:
-        msg: "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S') }}"
-
-    - name: Configure domain name with file backup
+    - name: Configure domain name with diff_against
       cisco.ios.ios_config:
         lines: ip domain name testdomain.com
-        backup: yes
+        diff_against: intended
+        intended_config: "{{ lookup('file', '/home/naima/Ansible_Practice_1/07_cisco_ios_config/bckp/{{ inventory_hostname }}/golden_config/{{ inventory_hostname }}.txt')}}"
+        diff_ignore_lines:
+          - hostname *
+        backup: no
         backup_options:
           dir_path: ./07_cisco_ios_config/bckp/{{ inventory_hostname }}/
           filename: "{{ inventory_hostname }}_{{ ansible_ssh_host }}_{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S') }}.txt"

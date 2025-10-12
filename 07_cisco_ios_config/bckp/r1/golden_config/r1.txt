@@ -1,13 +1,15 @@
 Building configuration...
 
-Current configuration : 3348 bytes
+Current configuration : 3427 bytes
+!
+! Last configuration change at 19:14:25 UTC Sun Oct 12 2025 by ansible_admin
 !
 version 15.6
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname R1
+hostname vIOS-R1
 !
 boot-start-marker
 boot-end-marker

@@ -1,14 +1,15 @@
 Building configuration...
 
-  
-Current configuration : 3199 bytes
+Current configuration : 3427 bytes
+!
+! Last configuration change at 19:14:25 UTC Sun Oct 12 2025 by ansible_admin
 !
 version 15.6
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname R2
+hostname R1
 !
 boot-start-marker
 boot-end-marker
@@ -46,7 +47,8 @@ multilink bundle-name authenticated
 !
 !
 !
-username admin privilege 15 secret 5 $1$pw1c$z6NFJKyQ3te1oQFAnYc0t/
+username admin privilege 15 secret 5 $1$BXhw$dEvRRoqzsz6DXC5bDMl5s/
+username ansible_admin privilege 15
 !
 redundancy
 !
@@ -67,7 +69,7 @@ ip tcp synwait-time 5
 !
 !
 interface GigabitEthernet0/0
- ip address 192.168.117.62 255.255.255.0
+ ip address 192.168.117.61 255.255.255.0
  duplex auto
  speed auto
  media-type rj45
@@ -98,6 +100,9 @@ ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
+ip ssh pubkey-chain
+  username ansible_admin
+   key-hash ssh-rsa 9BC11340BC211F99D668D142087A7799 naima@naima-VM
 !
 !
 !
