@@ -1,5 +1,5 @@
 ---
-- name: Configure domain name
+- name: Cisco ios_command-Module to run commands on remote devices 
   hosts: routers
   gather_facts: false
   tasks:
