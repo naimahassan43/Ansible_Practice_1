@@ -1,0 +1,16 @@
+---
+- name: Cisco ios_config-Module to manage configuration sections 
+  hosts: r1
+  gather_facts: false
+  tasks:
+    - name: Configure interface 
+      cisco.ios.ios_config:
+        lines: 
+          - description from_ansible
+          - ip address 100.3.3.1 255.255.255.0
+        parents: interface GigabitEthernet0/3
+      register: intf_config
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg: "{{ intf_config }}"
