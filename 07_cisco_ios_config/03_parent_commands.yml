@@ -6,9 +6,12 @@
     - name: Configure interface 
       cisco.ios.ios_config:
         lines: 
-          - description from_ansible
-          - ip address 100.3.3.1 255.255.255.0
-        parents: interface GigabitEthernet0/3
+          - description {{ item.description }}
+          - ip address {{item.ip}} {{item.mask}}
+        parents: interface {{ item.name }}
+      with_items: "{{interface_list}}"
+        # - GigabitEthernet0/2
+        # - GigabitEthernet0/3
       register: intf_config
 
     - name: Print command output
