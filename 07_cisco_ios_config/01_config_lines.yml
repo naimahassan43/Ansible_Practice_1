@@ -12,7 +12,7 @@
         lines: ip domain name testdomain.com
         backup: yes
         backup_options:
-          dir_path: ./07_cisco_ios_config/bckp/
+          dir_path: ./07_cisco_ios_config/bckp/{{ inventory_hostname }}
           filename: "{{ inventory_hostname }}_{{ ansible_ssh_host }}_{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S') }}.txt"
       register: domain_config
 
