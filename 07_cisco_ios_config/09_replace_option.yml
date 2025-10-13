@@ -1,0 +1,52 @@
+---
+- name: Cisco ios_config- Replace option
+  hosts: r3
+  gather_facts: false
+  tasks:
+  ########## Replace line ###########
+    - name: Configure Interface 
+      cisco.ios.ios_config:
+        lines:
+          - description test_desc
+          - ip address 22.2.2.3 255.255.255.0
+          - negotiation auto
+          - no mop enabled
+          - no mop sysid
+        parents: interface GigabitEthernet3
+        after: no shutdown
+        replace: line
+      register: intf_config
+
+    - name: Print Replace line
+      ansible.builtin.debug:
+        msg: "{{ intf_config }}"
+###################################
+
+########## Replace block ###########
+    - name: Configure Interface 
+      cisco.ios.ios_config:
+        lines:
+          - description test_desc
+          - ip address 22.2.2.4 255.255.255.0
+          - negotiation auto
+          - no mop enabled
+          - no mop sysid
+        parents: interface GigabitEthernet3
+        after: no shutdown
+        replace: block
+      register: intf_config
+
+    - name: Print Replace block
+      ansible.builtin.debug:
+        msg: "{{ intf_config }}"
+###################################
+    - name: Execute show ip interface
+      cisco.ios.ios_command:
+        commands: 
+          - show run interface GigabitEthernet3
+          - show ip interface brief
+      register: intf_cmd
+
+    - name: Print show ip interface
+      ansible.builtin.debug:
+        msg: "{{ intf_cmd.stdout_lines }}"
