@@ -5,7 +5,8 @@
   tasks:
     - name: Configure intf
       cisco.ios.ios_config:
-        src: templates/interface_config
+        src: templates/intf_conf.j2
+      with_items: "{{ interface_list }}"
       register: intf_config
 
     - name: Print command output
