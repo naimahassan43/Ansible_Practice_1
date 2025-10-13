@@ -70,7 +70,7 @@
     
     # - name: Configure Hostname 
     #   cisco.ios.ios_hostname:
-    #     running_config: "{{ lookup('file', 'backup/test.cnf')}}"
+    #     running_config: "{{ lookup('file', 'backup/r2.conf')}}"
     #     state: parsed
     #   register: host_conf
     
