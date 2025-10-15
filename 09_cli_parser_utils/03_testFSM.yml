@@ -1,19 +1,20 @@
 ---
-- name: NTC Templates Parser
+- name: TextFSM Parser
   hosts: r3
   gather_facts: false
   tasks:
     - name: Ansible CLI Parse
       ansible.utils.cli_parse:
-        command: show ip interface brief
+        command: show version
         parser:
-          name: ansible.netcommon.ntc_templates
+          name: ansible.netcommon.textfsm
+          template_path: /home/naima/Ansible_Practice_1/09_cli_parser_utils/templates/cisco_ios_show_version.textfsm
         set_fact: sh_ver
       register: show_output
   
     - name: Print Output
       ansible.builtin.debug:
         msg: 
-          #- "{{ show_output }}"
-          - "{{ sh_ver }}"
+          - "{{ show_output }}"
+      
        
