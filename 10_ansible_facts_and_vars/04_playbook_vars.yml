@@ -1,0 +1,44 @@
+---
+- name: Ansible Play Vars 
+  hosts: r3
+  vars:
+    ntp_server: 1.1.1.1
+    tacas_servers: 
+      - 10.1.1.1
+      - 20.1.1.1
+    bgp_config:
+      neighbor: 11.1.1.1
+      remote-as: 2
+      networks:
+          - 10.0.0.0
+          - 20.0.0.0
+    intf_conf:
+      - name: GigabitEthernet1
+        desc: test1
+        ip: 1.1.1.1
+      - name: GigabitEthernet2
+        desc: test2
+        ip: 1.1.1.2
+    test_list: ['lo1', 'lo2']
+    test_dict: {'name': 'gi1', 'ip': '2.2.2.2'}
+  vars_files:
+    - route_config.yml
+    - servers.yml
+  gather_facts: false
+  tasks:
+    - name: Print Variables
+      ansible.builtin.debug:
+        msg:
+          - "{{ inventory_hostname }}"
+          - "{{ ntp_server }}"
+          #- "{{ tacas_servers | type_debug }}"
+          - "{{ bgp_config }}"
+          - "{{ intf_conf[0] }}"
+          - "{{ intf_conf[1]['name'] }}"
+          - "{{ test_list }}"
+          - "{{ test_dict }}"
+          - "{{ gateway }}"
+          - "{{ dhcp_srv }}"
+    
+    
+   
