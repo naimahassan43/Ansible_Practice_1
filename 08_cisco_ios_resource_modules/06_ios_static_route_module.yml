@@ -1,0 +1,22 @@
+---
+- name: Cisco ios Static Route module
+  hosts: r2
+  gather_facts: false
+  tasks:
+    - name: Config Static Route
+      cisco.ios.ios_static_routes:
+        config:
+          - address_families:
+            - afi: ipv4
+              routes:
+                - dest: 100.0.0.0/24
+                  next_hops:
+                    - forward_router_address: 10.10.10.1
+                      name: new_route
+                      distance_metric: 10
+        state: deleted
+      register: route_config
+
+    - name: Print Output
+      ansible.builtin.debug:
+        msg: "{{ route_config }}"
