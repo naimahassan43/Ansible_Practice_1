@@ -14,7 +14,7 @@
                     - forward_router_address: 10.10.10.1
                       name: new_route
                       distance_metric: 10
-        state: deleted
+        state: rendered
       register: route_config
 
     - name: Print Output
