@@ -109,9 +109,18 @@
     #     msg: "{{ route_dict }}"
  
     ######### Combine Filter #########
-    - name: Print Combine 
+    # - name: Print Combine 
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ {'Gi1': '1.1.1.1', 'Gi2': '2.2.2.2'} | combine({'Gi2': '2.2.3.3'}) }}"
+    #       - "{{ ['a', 'b'] + ['c', 'd', 'a'] }}"
+    #       - "{{ (['a', 'b'] + ['c', 'd', 'a']) | unique }}"
+    
+    ######### Map Filter #########
+    - name: Print map 
       ansible.builtin.debug:
         msg:
-          - "{{ {'Gi1': '1.1.1.1', 'Gi2': '2.2.2.2'} | combine({'Gi2': '2.2.3.3'}) }}"
-          - "{{ ['a', 'b'] + ['c', 'd', 'a'] }}"
-          - "{{ (['a', 'b'] + ['c', 'd', 'a']) | unique }}"
+          - "{{ [0,3] | map('extract', dest_subs)}}"
+          - "{{ [0,3,2] | map('extract', dest_subs) | list}}"
+          - "{{ ['name'] | map('extract', interface_list[0]) }}"
+          - "{{ interface_list | map(attribute='ip') }}"
