@@ -1,0 +1,2 @@
+ip_domain_name: from_group_vars_vios_group.com
+intf_num: 0/0

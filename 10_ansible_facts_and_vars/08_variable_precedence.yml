@@ -1,0 +1,24 @@
+---
+- name: Ansible Variable Precedence 
+  hosts: r2
+  vars:
+    tacacs_server_ip: 192.168.117.33
+  vars_files:
+    - servers.yml
+  gather_facts: false
+  tasks:
+    - name: Include vars
+      ansible.builtin.include_vars:
+        file: inc_vars_demo/route_inc.yml
+    
+    - name: Set fact
+      ansible.builtin.set_fact:
+        tacacs_server_ip: 192.168.117.10
+
+    - name: Print output
+      ansible.builtin.debug:
+        msg:
+          - "{{ tacacs_server_ip }}"
+          
+ 
+
