@@ -4,6 +4,8 @@
   gather_facts: false
   vars:
     ospf_process_id: 2
+    vrf_name: 'mgmt'
+    devices: ['r1', 'r2']
   tasks:
   ########### default #############
     # - name: Print output
@@ -24,3 +26,15 @@
     #   ansible.builtin.debug:
     #     msg:
     #       - "{{ intf_config }}"
+
+    ########## Ternary ###############
+    - name: Ternary Filter
+      ansible.builtin.set_fact:
+        vrf_type: "{{ (vrf_name == 'mgmt') | ternary('management' , 'non-management') }}"
+    
+    - name: Print output
+      ansible.builtin.debug:
+        msg: 
+          - "{{ vrf_type }}"
+          - "{{ vrf_type | type_debug }}"
+          - "{{ devices | type_debug }}"
