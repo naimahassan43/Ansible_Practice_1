@@ -1,0 +1,26 @@
+---
+- name: Ansible Filters
+  hosts: r2
+  gather_facts: false
+  vars:
+    ospf_process_id: 2
+  tasks:
+  ########### default #############
+    # - name: Print output
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ ospf_process_id | default(1, true)}}"
+  
+  ########### default(omit) #############
+    # - name: Interface Config
+    #   with_items: "{{ interface_list }}"
+    #   cisco.ios.ios_interfaces:
+    #     config:
+    #       - name: "{{item.name}}"
+    #         description: "{{item.description | default(omit)}}"
+    #   register: intf_config
+
+    # - name: Print output
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ intf_config }}"
