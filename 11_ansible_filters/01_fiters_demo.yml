@@ -28,13 +28,26 @@
     #       - "{{ intf_config }}"
 
     ########## Ternary ###############
-    - name: Ternary Filter
-      ansible.builtin.set_fact:
-        vrf_type: "{{ (vrf_name == 'mgmt') | ternary('management' , 'non-management') }}"
+    # - name: Ternary Filter
+    #   ansible.builtin.set_fact:
+    #     vrf_type: "{{ (vrf_name == 'mgmt') | ternary('management' , 'non-management') }}"
     
-    - name: Print output
+    # - name: Print output
+    #   ansible.builtin.debug:
+    #     msg: 
+    #       - "{{ vrf_type }}"
+    #       - "{{ vrf_type | type_debug }}"
+    #       - "{{ devices | type_debug }}"
+    
+    ########## dict2items, items2dict ############
+    - name: Ansible dict2items Filter
       ansible.builtin.debug:
-        msg: 
-          - "{{ vrf_type }}"
-          - "{{ vrf_type | type_debug }}"
-          - "{{ devices | type_debug }}"
+        msg: "{{ ospf_vars | dict2items }}"
+    
+    - name: Ansible dict2items Filter
+      ansible.builtin.debug:
+        msg: "{{ ospf_vars | dict2items(key_name='abc', value_name='cde') }}"
+
+    - name: Ansible items2dict Filter
+      ansible.builtin.debug:
+        msg: "{{interface_list | items2dict(key_name='name', value_name='ip') }}"
