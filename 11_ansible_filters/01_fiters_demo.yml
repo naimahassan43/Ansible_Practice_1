@@ -40,14 +40,30 @@
     #       - "{{ devices | type_debug }}"
     
     ########## dict2items, items2dict ############
-    - name: Ansible dict2items Filter
-      ansible.builtin.debug:
-        msg: "{{ ospf_vars | dict2items }}"
+    # - name: Ansible dict2items Filter
+    #   ansible.builtin.debug:
+    #     msg: "{{ ospf_vars | dict2items }}"
     
-    - name: Ansible dict2items Filter
-      ansible.builtin.debug:
-        msg: "{{ ospf_vars | dict2items(key_name='abc', value_name='cde') }}"
+    # - name: Ansible dict2items Filter
+    #   ansible.builtin.debug:
+    #     msg: "{{ ospf_vars | dict2items(key_name='abc', value_name='cde') }}"
 
-    - name: Ansible items2dict Filter
-      ansible.builtin.debug:
-        msg: "{{interface_list | items2dict(key_name='name', value_name='ip') }}"
+    # - name: Ansible items2dict Filter
+    #   ansible.builtin.debug:
+    #     msg: "{{interface_list | items2dict(key_name='name', value_name='ip') }}"
+    
+    ########## Save to_json, to_yaml ############
+    # - name: Save to_json
+    #   ansible.builtin.copy:
+    #     #content: "{{ ospf_vars | to_json }}"
+    #     #content: "{{ ospf_vars | to_nice_json }}"
+    #     content: "{{ ospf_vars | to_nice_json(indent=8) }}"
+    #     #dest: to_json_demo.json
+    #     #dest: to_nice_json_demo.json
+    #     dest: to_nice_json_ind_demo.json
+
+    - name: Save to_yaml
+      ansible.builtin.copy:
+        #content: "{{ interface_list | to_yaml }}"
+        content: "{{ interface_list | to_nice_yaml(indent=8) }}"
+        dest: to_nice_yaml_ind_demo.yaml
