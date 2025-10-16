@@ -69,13 +69,24 @@
     #     dest: to_nice_yaml_ind_demo.yaml
 
     ########## Convert into ansible variable from_json, from_yaml ############
-    - name: Print from_json file
-      ansible.builtin.debug:
-        msg: 
-          - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json }}"
-          - "{{ (lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json).area }}"
+    # - name: Print from_json file
+    #   ansible.builtin.debug:
+    #     msg: 
+    #       - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json }}"
+    #       - "{{ (lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json).area }}"
     
-    - name: Print from_yaml file
+    # - name: Print from_yaml file
+    #   ansible.builtin.debug:
+    #     msg: 
+    #       - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_yaml_demo.yaml') | from_yaml }}"
+    
+     ########## Zip and Zip_longest ############
+    - name: Zip and Zip_longest
+      ansible.builtin.set_fact:
+       # route_list: "{{dest_subs | zip(dest_gws) | list}}"
+       # route_list: "{{dest_subs | zip_longest(dest_gws) | list}}"
+        route_list: "{{dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2') | list}}"
+
+    - name: Print Zip data
       ansible.builtin.debug:
-        msg: 
-          - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_yaml_demo.yaml') | from_yaml }}"
+        msg: "{{ route_list }}"
