@@ -62,8 +62,20 @@
     #     #dest: to_nice_json_demo.json
     #     dest: to_nice_json_ind_demo.json
 
-    - name: Save to_yaml
-      ansible.builtin.copy:
-        #content: "{{ interface_list | to_yaml }}"
-        content: "{{ interface_list | to_nice_yaml(indent=8) }}"
-        dest: to_nice_yaml_ind_demo.yaml
+    # - name: Save to_yaml
+    #   ansible.builtin.copy:
+    #     #content: "{{ interface_list | to_yaml }}"
+    #     content: "{{ interface_list | to_nice_yaml(indent=8) }}"
+    #     dest: to_nice_yaml_ind_demo.yaml
+
+    ########## Convert into ansible variable from_json, from_yaml ############
+    - name: Print from_json file
+      ansible.builtin.debug:
+        msg: 
+          - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json }}"
+          - "{{ (lookup('file', '/home/naima/Ansible_Practice_1/to_json_demo.json') | from_json).area }}"
+    
+    - name: Print from_yaml file
+      ansible.builtin.debug:
+        msg: 
+          - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_yaml_demo.yaml') | from_yaml }}"
