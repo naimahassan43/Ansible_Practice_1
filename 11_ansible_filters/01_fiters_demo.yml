@@ -117,10 +117,24 @@
     #       - "{{ (['a', 'b'] + ['c', 'd', 'a']) | unique }}"
     
     ######### Map Filter #########
-    - name: Print map 
+    # - name: Print map 
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ [0,3] | map('extract', dest_subs)}}"
+    #       - "{{ [0,3,2] | map('extract', dest_subs) | list}}"
+    #       - "{{ ['name'] | map('extract', interface_list[0]) }}"
+    #       - "{{ interface_list | map(attribute='ip') }}"
+    
+     ######### List operations #########
+    - name: List operations
+      vars:
+        data1: [1,2,3,4,5,6,7,10,11,12]
+        data2: [8,9,10,11,12]
       ansible.builtin.debug:
         msg:
-          - "{{ [0,3] | map('extract', dest_subs)}}"
-          - "{{ [0,3,2] | map('extract', dest_subs) | list}}"
-          - "{{ ['name'] | map('extract', interface_list[0]) }}"
-          - "{{ interface_list | map(attribute='ip') }}"
+          #- "{{ [1,2,[3,4,5, [6,7,8,[9,10]]]] | flatten(levels=2) }}"
+          #- "{{ data1 | union(data2)}}"
+          #- "{{ data1 | intersect(data2)}}"
+         #- "{{ data1 | difference(data2)}}"
+         #- "{{ data2 | difference(data1)}}"
+          - "{{ data1 | symmetric_difference(data2)}}"
