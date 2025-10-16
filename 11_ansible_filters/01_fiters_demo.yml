@@ -81,21 +81,29 @@
     #       - "{{ lookup('file', '/home/naima/Ansible_Practice_1/to_yaml_demo.yaml') | from_yaml }}"
     
      ########## Zip and Zip_longest ############
-    - name: Zip and Zip_longest
-      ansible.builtin.set_fact:
-       # route_list: "{{dest_subs | zip(dest_gws) | list}}"
-       # route_list: "{{dest_subs | zip_longest(dest_gws) | list}}"
-        route_list: "{{dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2') | list}}"
+    # - name: Zip and Zip_longest
+    #   ansible.builtin.set_fact:
+    #    # route_list: "{{dest_subs | zip(dest_gws) | list}}"
+    #    # route_list: "{{dest_subs | zip_longest(dest_gws) | list}}"
+    #     route_list: "{{dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2') | list}}"
 
     # - name: Print Zip data
     #   ansible.builtin.debug:
     #     msg: "{{ route_list }}"
 
-    - name: Generate route command
-      loop: "{{route_list}}"
-      ansible.builtin.set_fact:
-        route_conf: "{{ route_conf | default([]) + ['ip route ' + item[0] + ' 255.255.255.0 ' + item[1] ]}}"
+    # - name: Generate route command
+    #   loop: "{{route_list}}"
+    #   ansible.builtin.set_fact:
+    #     route_conf: "{{ route_conf | default([]) + ['ip route ' + item[0] + ' 255.255.255.0 ' + item[1] ]}}"
     
+    # - name: Print Output
+    #   ansible.builtin.debug:
+    #     msg: "{{ route_conf }}"
+    
+    - name: Create dict
+      ansible.builtin.set_fact:
+        route_dict: "{{dict(dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2'))}}"
+
     - name: Print Output
       ansible.builtin.debug:
-        msg: "{{ route_conf }}"
+        msg: "{{ route_dict }}"
