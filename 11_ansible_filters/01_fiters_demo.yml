@@ -87,6 +87,15 @@
        # route_list: "{{dest_subs | zip_longest(dest_gws) | list}}"
         route_list: "{{dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2') | list}}"
 
-    - name: Print Zip data
+    # - name: Print Zip data
+    #   ansible.builtin.debug:
+    #     msg: "{{ route_list }}"
+
+    - name: Generate route command
+      loop: "{{route_list}}"
+      ansible.builtin.set_fact:
+        route_conf: "{{ route_conf | default([]) + ['ip route ' + item[0] + ' 255.255.255.0 ' + item[1] ]}}"
+    
+    - name: Print Output
       ansible.builtin.debug:
-        msg: "{{ route_list }}"
+        msg: "{{ route_conf }}"
