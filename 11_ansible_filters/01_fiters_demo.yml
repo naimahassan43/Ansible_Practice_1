@@ -100,10 +100,18 @@
     #   ansible.builtin.debug:
     #     msg: "{{ route_conf }}"
     
-    - name: Create dict
-      ansible.builtin.set_fact:
-        route_dict: "{{dict(dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2'))}}"
+    # - name: Create dict
+    #   ansible.builtin.set_fact:
+    #     route_dict: "{{dict(dest_subs | zip_longest(dest_gws, fillvalue='GigabitEthernet0/2'))}}"
 
-    - name: Print Output
+    # - name: Print Output
+    #   ansible.builtin.debug:
+    #     msg: "{{ route_dict }}"
+ 
+    ######### Combine Filter #########
+    - name: Print Combine 
       ansible.builtin.debug:
-        msg: "{{ route_dict }}"
+        msg:
+          - "{{ {'Gi1': '1.1.1.1', 'Gi2': '2.2.2.2'} | combine({'Gi2': '2.2.3.3'}) }}"
+          - "{{ ['a', 'b'] + ['c', 'd', 'a'] }}"
+          - "{{ (['a', 'b'] + ['c', 'd', 'a']) | unique }}"
