@@ -195,14 +195,32 @@
     #       - "Usable:{{ ip_list[1] | ansible.utils.network_in_usable('192.168.2.16/28') }}"
    
    ######## URL Split ###########################
-    - name: URL Split Filter
+    # - name: URL Split Filter
+    #   vars:
+    #     #test_url: "https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html"
+    #     test_url: "https://admin:pwd%40123@docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html"
+    #   ansible.builtin.debug:
+    #     msg:
+    #       # - "{{ test_url | urlsplit }}"
+    #       # - "{{ test_url | urldecode }}"
+    #       # - "{{ test_url | urlsplit('netloc') | urldecode }}"
+    #       - "{{ test_url | urlsplit('hostname')}}"
+
+   ######## String manipulation ###########################
+    - name: String manipulation
       vars:
-        #test_url: "https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html"
-        test_url: "https://admin:pwd%40123@docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html"
+        user_list: ['user1', 'user2', 'user3']
+        user_text: 'admin1, admin2, admin3'
+        u_name: "Admin"
       ansible.builtin.debug:
         msg:
-          # - "{{ test_url | urlsplit }}"
-          # - "{{ test_url | urldecode }}"
-          # - "{{ test_url | urlsplit('netloc') | urldecode }}"
-          - "{{ test_url | urlsplit('hostname')}}"
-   
+          - "{{ user_list | join(', ') }}"
+          - "{{ user_list | join(', ') | type_debug }}"
+          - "{{ user_text | split(', ')}}"
+          - "{{ u_name | lower }}"
+          - "{{ u_name | upper }}"
+          - "{{ u_name | trim | lower }}"
+          - "{{ u_name [:3] }}"
+          - "{{ u_name [:-2] }}"
+          - "{{ u_name [3:] }}"
+          - "{{ u_name [-3:] }}"
