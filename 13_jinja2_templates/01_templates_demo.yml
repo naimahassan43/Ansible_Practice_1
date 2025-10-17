@@ -3,17 +3,33 @@
   hosts: routers
   gather_facts: false
   tasks:
+  ########## template ##################
     # - name: Generate Conf 
     #   ansible.builtin.template:
-    #     src: device_conf.j2
+    #     src: templates/device_conf.j2
     #     dest: "demo_files/{{ inventory_hostname }}_device_conf.txt"
     
     # - debug: msg="{{ groups }}"
 
-      - name: Send Config to Cisco 
-        cisco.ios.ios_config:
-          #lines: "{{ lookup('template', 'templates/device_conf.j2') }}"
-          lines: "{{ lookup('template', 'device_conf.j2') }}"
-        register: ios_conf
+############ ios template ####################
+      # - name: Send Config to Cisco 
+      #   cisco.ios.ios_config:
+      #     #lines: "{{ lookup('template', 'templates/device_conf.j2') }}"
+      #     lines: "{{ lookup('template', 'device_conf.j2') }}"
+      #   register: ios_conf
 
-      - debug: msg="{{ ios_conf }}"
+      # - debug: msg="{{ ios_conf }}"
+
+########### for loop #########################
+    - name: Template for for_loop 
+      ansible.builtin.set_fact:
+        route_list: "{{ dest_subs | zip_longest(dest_gws) | list }}"
+      
+    - debug: msg="{{ route_list }}"
+
+    - name: Generate Conf 
+      ansible.builtin.template:
+        src: templates/for_loop.j2
+        dest: "demo_files/{{ inventory_hostname }}_ip_route_conf.txt"
+    
+    - debug: msg="{{ groups }}"
