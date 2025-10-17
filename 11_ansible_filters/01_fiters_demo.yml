@@ -3,9 +3,11 @@
   hosts: r2
   gather_facts: false
   vars:
-    ospf_process_id: 2
-    vrf_name: 'mgmt'
-    devices: ['r1', 'r2']
+    # ospf_process_id: 2
+    # vrf_name: 'mgmt'
+    # devices: ['r1', 'r2']
+    #ansible_python_interpreter: /home/naima/py_venv/venv1/bin/python3.12
+
   tasks:
   ########### default #############
     # - name: Print output
@@ -126,15 +128,40 @@
     #       - "{{ interface_list | map(attribute='ip') }}"
     
      ######### List operations #########
-    - name: List operations
-      vars:
-        data1: [1,2,3,4,5,6,7,10,11,12]
-        data2: [8,9,10,11,12]
+    # - name: List operations
+    #   vars:
+    #     data1: [1,2,3,4,5,6,7,10,11,12]
+    #     data2: [8,9,10,11,12]
+    #   ansible.builtin.debug:
+    #     msg:
+    #       #- "{{ [1,2,[3,4,5, [6,7,8,[9,10]]]] | flatten(levels=2) }}"
+    #       #- "{{ data1 | union(data2)}}"
+    #       #- "{{ data1 | intersect(data2)}}"
+    #      #- "{{ data1 | difference(data2)}}"
+    #      #- "{{ data2 | difference(data1)}}"
+    #       - "{{ data1 | symmetric_difference(data2)}}"
+
+       ########### json_query #############
+    - name: Interface Config
+      cisco.ios.ios_interfaces:
+        state: gathered
+      register: intf_config
+
+    - name: Print intf config
       ansible.builtin.debug:
         msg:
-          #- "{{ [1,2,[3,4,5, [6,7,8,[9,10]]]] | flatten(levels=2) }}"
-          #- "{{ data1 | union(data2)}}"
-          #- "{{ data1 | intersect(data2)}}"
-         #- "{{ data1 | difference(data2)}}"
-         #- "{{ data2 | difference(data1)}}"
-          - "{{ data1 | symmetric_difference(data2)}}"
+          - "{{ intf_config }}"
+
+    - name: Print enabled True interfaces
+      ansible.builtin.debug:
+        msg:
+          - '{{ intf_config.gathered | json_query("[?description]") }}' ## prints interfaces with description
+          - '{{ intf_config.gathered | json_query("[?enabled==`true`]") }}'
+          - '{{ intf_config.gathered | json_query("[?enabled==`false`]") }}'
+          - '{{ intf_config.gathered | json_query("[?enabled==`false`].[name]") }}'
+          - '{{ intf_config.gathered | json_query("[?enabled==`false`].name") }}'
+          - '{{ intf_config.gathered | json_query("[?enabled==`false`].{name: name, speed: speed}") }}'
+  
+ 
+   
+   

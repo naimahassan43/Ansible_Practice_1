@@ -26,6 +26,7 @@ all:
                     3239
     routers:
       vars:
+          #ansible_python_interpreter: /home/naima/py_venv/venv1/bin/python3.12
           tacacs_server_ip: 192.168.117.1
           ansible_become: 'true'
           ansible_become_method: enable
