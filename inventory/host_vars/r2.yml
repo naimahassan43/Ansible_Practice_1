@@ -1,5 +1,6 @@
 ip_domain_name: from_r2_host_vars.com
 dc1_domain: dc1_from_r2.com
+# add_default_route: false
 interface_list:
       - name: GigabitEthernet0/2
         description: Gi2_desc

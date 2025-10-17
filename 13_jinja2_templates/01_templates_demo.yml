@@ -1,0 +1,11 @@
+---
+- name: Jinja2 Template Demo
+  hosts: routers
+  gather_facts: false
+  tasks:
+    - name: Generate Conf 
+      ansible.builtin.template:
+        src: device_conf.j2
+        dest: "demo_files/{{ inventory_hostname }}_device_conf.txt"
+    
+    - debug: msg="{{ groups }}"

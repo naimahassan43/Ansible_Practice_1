@@ -1,0 +1,2 @@
+hostname R2
+ip domain name demo.com
