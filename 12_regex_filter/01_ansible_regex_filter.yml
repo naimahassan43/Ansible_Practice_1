@@ -10,9 +10,9 @@
           - show ip interface brief
       register: show_command_output
 
-    - name: Print Regex search
-      ansible.builtin.debug:
-        msg: 
+    # - name: Print Regex search
+    #   ansible.builtin.debug:
+    #     msg: 
           # - "{{ show_command_output.stdout[0] }}"
           #- "{{ show_command_output.stdout[0] | regex_search('Cisco.+Software, Version\\s(\\d\\S+)') }}"
           #- "{{ show_command_output.stdout[0] | regex_search('Cisco.+Software, Version\\s(\\d\\S+)', '\\1') }}"
@@ -20,10 +20,15 @@
           # - "{{ show_command_output.stdout[0] | regex_search('(?P<hostname>\\S+) uptime is (?P<uptime>.+)', '\\g<uptime>', '\\g<hostname>', multiline=True) }}"
           # - "{{ show_command_output.stdout[0] | regex_search('(?P<hostname>\\S+) Uptime is (?P<uptime>.+)', '\\g<uptime>', '\\g<hostname>', multiline=True, ignorecase=True) }}"
 
-    - name: Print Regex findall
+    # - name: Print Regex findall
+    #   ansible.builtin.debug:
+    #     msg: 
+    #       #- "{{ show_command_output.stdout[1] }}"
+    #       - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)', multiline=True) }}"
+    #       - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)\\s+(\\S+)', multiline=True) }}"
+    #       - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)\\s+(\\S+)\\s+\\S+\\s\\S+\\s+(\\S+)', multiline=True) }}"
+    
+    - name: Print Regex replace
       ansible.builtin.debug:
         msg: 
-          #- "{{ show_command_output.stdout[1] }}"
-          - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)', multiline=True) }}"
-          - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)\\s+(\\S+)', multiline=True) }}"
-          - "{{ show_command_output.stdout[1] | regex_findall('(GigabitEthernet\\d)\\s+(\\S+)\\s+\\S+\\s\\S+\\s+(\\S+)', multiline=True) }}"
+          - "{{ show_command_output.stdout[1] | regex_replace('GigabitEthernet(\\d)', 'GigabitEthernet0/\\1', multiline=True) }}"
