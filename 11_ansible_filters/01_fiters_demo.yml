@@ -207,20 +207,30 @@
     #       - "{{ test_url | urlsplit('hostname')}}"
 
    ######## String manipulation ###########################
-    - name: String manipulation
-      vars:
-        user_list: ['user1', 'user2', 'user3']
-        user_text: 'admin1, admin2, admin3'
-        u_name: "Admin"
+    # - name: String manipulation
+    #   vars:
+    #     user_list: ['user1', 'user2', 'user3']
+    #     user_text: 'admin1, admin2, admin3'
+    #     u_name: "Admin"
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ user_list | join(', ') }}"
+    #       - "{{ user_list | join(', ') | type_debug }}"
+    #       - "{{ user_text | split(', ')}}"
+    #       - "{{ u_name | lower }}"
+    #       - "{{ u_name | upper }}"
+    #       - "{{ u_name | trim | lower }}"
+    #       - "{{ u_name [:3] }}"
+    #       - "{{ u_name [:-2] }}"
+    #       - "{{ u_name [3:] }}"
+    #       - "{{ u_name [-3:] }}"
+
+    ####### Datetime ###########################
+    - name: Datetime
       ansible.builtin.debug:
         msg:
-          - "{{ user_list | join(', ') }}"
-          - "{{ user_list | join(', ') | type_debug }}"
-          - "{{ user_text | split(', ')}}"
-          - "{{ u_name | lower }}"
-          - "{{ u_name | upper }}"
-          - "{{ u_name | trim | lower }}"
-          - "{{ u_name [:3] }}"
-          - "{{ u_name [:-2] }}"
-          - "{{ u_name [3:] }}"
-          - "{{ u_name [-3:] }}"
+          # - "{{ '%Y-%m-%d %H:%M:%S' | strftime }}"
+          # - "{{ '%Y-%m-%d %H:%M:%S' | strftime(utc=True) }}"
+          # - "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S')}}"
+          - "{{ (('%Y-%m-%d %H:%M:%S' | strftime | to_datetime ) - ('2025-02-23 10:00:01' | to_datetime)) | string }}"
+          - "{{ (('%Y-%m-%d %H:%M:%S' | strftime | to_datetime ) - ('2023-12-23 10:00:01' | to_datetime)).total_seconds() }}"
