@@ -2,15 +2,16 @@ all:
   children:
     ungrouped:
       hosts:
+        demo03:
+          ansible_connection: local
+          add_delay: 5
         demo01:
           ansible_connection: local
           add_delay: 5
         demo02:
           ansible_connection: local
           add_delay: 5
-        demo03:
-          ansible_connection: local
-          add_delay: 5
+        
         demo04:
           ansible_connection: local
           add_delay: 5
