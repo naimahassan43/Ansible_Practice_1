@@ -25,8 +25,19 @@
     #                                 variable_end_string='%]') }}"
 
   ############ Vars lookup ########
-    - name: Vars lookup Plugin
+    # - name: Vars lookup Plugin
+    #   ansible.builtin.debug:
+    #     msg:
+    #       #- "{{ lookup('vars', '{{inventory_hostname}}_location') }}" [embedded {{inventory_hostname}} inside another Jinja template string will soon be invalid.]#
+    #       - "{{ lookup('vars', inventory_hostname + '_location') }}"
+
+   ############ Env lookup ########
+    - name: Env lookup Plugin
       ansible.builtin.debug:
         msg:
-          #- "{{ lookup('vars', '{{inventory_hostname}}_location') }}" [embedded {{inventory_hostname}} inside another Jinja template string will soon be invalid.]#
-          - "{{ lookup('vars', inventory_hostname + '_location') }}"
+          - "{{ lookup('env', 'HOME')}}"
+          - "{{ lookup('env', 'VSCODE_GIT_ASKPASS_NODE')}}"
+          - "{{ lookup('env', 'VIRTUAL_ENV')}}"
+          - "{{ lookup('env', 'VIRTUAL_ENV1')}}"
+          - "{{ lookup('env', 'VIRTUAL_ENV1', default='no_environment_set')}}"
+          #- "{{ lookup('env', 'VIRTUAL_ENV1', default=undefined)}}"
