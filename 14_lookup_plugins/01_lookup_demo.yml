@@ -1,0 +1,14 @@
+---
+- name: Lookup Plugins Demo
+  hosts: r2
+  gather_facts: false
+  tasks:
+  ############ File lookup ########
+    - name: File lookup Plugin
+      ansible.builtin.debug:
+        msg:
+          #- "{{ lookup('file', 'ios_conf1.txt', errors='ignore') }}"
+          #- "{{ lookup('file', 'ios_conf.txt', errors='warn') }}"
+          #- "{{ lookup('file', 'ios_conf.txt', errors='strict') }}"
+          #- "{{ lookup('file', 'ios_conf.txt', errors='strict', wantlist=True) }}"
+          - "{{ lookup('file', 'ios_conf.txt', errors='strict', lstrip=True, rstrip=False) }}"
