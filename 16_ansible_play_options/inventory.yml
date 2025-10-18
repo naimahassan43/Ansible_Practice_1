@@ -4,11 +4,31 @@ all:
       hosts:
         demo01:
           ansible_connection: local
-          add_delay: 1
+          add_delay: 5
         demo02:
           ansible_connection: local
           add_delay: 5
         demo03:
           ansible_connection: local
-          add_delay: 1
-          
+          add_delay: 5
+        demo04:
+          ansible_connection: local
+          add_delay: 5
+        demo05:
+          ansible_connection: local
+          add_delay: 5
+        demo06:
+          ansible_connection: local
+          add_delay: 5
+        demo07:
+          ansible_connection: local
+          add_delay: 5
+        demo08:
+          ansible_connection: local
+          add_delay: 5
+        demo09:
+          ansible_connection: local
+          add_delay: 5
+        demo10:
+          ansible_connection: local
+          add_delay: 5
