@@ -35,12 +35,30 @@
     # - debug: msg="{{ groups }}"
 
     ########## jinja2 include option ##################
-    - name: Template for for_loop 
-      ansible.builtin.set_fact:
-        route_list: "{{ dest_subs | zip_longest(dest_gws) | list }}"
+    # - name: Template for for_loop 
+    #   ansible.builtin.set_fact:
+    #     route_list: "{{ dest_subs | zip_longest(dest_gws) | list }}"
 
-    - name: Jinja2 include option
-      ansible.builtin.template:
-        src: templates/include_demo.j2
-        dest: "demo_files/{{ inventory_hostname }}_include_all_conf.txt"
+    # - name: Jinja2 include option
+    #   ansible.builtin.template:
+    #     src: templates/include_demo.j2
+    #     dest: "demo_files/{{ inventory_hostname }}_include_all_conf.txt"
     
+    ########## Embeb jinja2 code into ansible ##################
+    - name: Create list of interface names 
+      ansible.builtin.set_fact:
+        intf_lst: "{{ interface_list | map(attribute='name')}}"
+    
+    - debug: msg="{{ intf_lst }}"
+
+    - name: Jinja2 Code
+      ansible.builtin.set_fact:
+        intf_list: |
+                {% set intf_name_list = [] %}
+                {% for intf_details in interface_list %}
+                {% set intf_name = intf_details.get('name') %}
+                {% set intf_name_list = intf_name_list.append(intf_name) %}
+                {% endfor %}
+                {{ intf_name_list }}
+    
+    - debug: msg="{{ intf_list }}"
