@@ -43,12 +43,12 @@
           #- "{{ lookup('env', 'VIRTUAL_ENV1', default=undefined)}}"
     
     ############ Pipe lookup ########
-    - name: Pipe lookup Plugin
-      ansible.builtin.debug:
-        msg:
-          - "{{ lookup('pipe', 'date')}}"
-          - "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S')}}"
-          - "{{ lookup('pipe', 'pwd')}}"
-          - "{{ lookup('pipe', 'pwd1', errors='ignore')}}"
-          #- "{{ lookup('pipe', 'pwd1', errors='warn')}}"
-          - "{{ lookup('pipe', 'pwd1', errors='strict')}}"
+    # - name: Pipe lookup Plugin
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ lookup('pipe', 'date')}}"
+    #       - "{{ lookup('pipe', 'date +%Y-%m-%d@%H:%M:%S')}}"
+    #       - "{{ lookup('pipe', 'pwd')}}"
+    #       - "{{ lookup('pipe', 'pwd1', errors='ignore')}}"
+    #       #- "{{ lookup('pipe', 'pwd1', errors='warn')}}"
+    #       #- "{{ lookup('pipe', 'pwd1', errors='strict')}}"

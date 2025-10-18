@@ -1,0 +1,64 @@
+---
+- name: Loops and Conditionals Demo
+  hosts: r2
+  gather_facts: false
+  vars:
+    ips:
+      - 10.0.1.1
+      - 10.0.1.2
+      - [10.0.1.3, 10.0.1.4]
+  tasks: 
+    ######### With_list and Loop #############
+    # - name: With_list demo
+    #   ansible.builtin.debug:
+    #     msg: "{{item}}"
+    #   with_list: "{{ ips }}"
+    
+    # - name: Loop demo
+    #   ansible.builtin.debug:
+    #     msg: "{{item}}"
+    #   loop: "{{ ips }}"
+
+    ######### With_items and Loop with flatten #############
+    # - name: With_items demo
+    #   ansible.builtin.debug:
+    #     msg: "{{item}}"
+    #   with_items: "{{ ips }}"
+    
+    # - name: Loop with flatten
+    #   ansible.builtin.debug:
+    #     msg: "{{item}}"
+    #   loop: "{{ ips | flatten }}"
+    
+    ######### With_dict and Loop with dict2items #############
+    # - name: With_dict demo
+    #   ansible.builtin.debug:
+    #     msg: "OSPF {{item.key}} is {{item.value}}"
+    #   with_dict: "{{ ospf_vars }}"
+
+    # - name: Print dict2items
+    #   ansible.builtin.debug:
+    #     msg: "{{ ospf_vars | dict2items }}"
+
+    # - name: Loop with dict2items 
+    #   ansible.builtin.debug:
+    #     msg: "OSPF {{item.key}} is {{item.value}}"
+    #   loop: "{{ ospf_vars | dict2items }}"
+   
+
+    ######### With_together and Loop with zip #############
+    - name: With_together demo
+      ansible.builtin.debug:
+        msg: "Subnet is {{item.0}} and Gateway is {{item.1}}"
+      with_together: 
+          - "{{ dest_subs }}"
+          - "{{ dest_gws }}"
+
+    # - name: Print zip
+    #   ansible.builtin.debug:
+    #     msg: "{{ dest_subs | zip_longest(dest_gws) | list }}"
+
+    - name: Loop with zip
+      ansible.builtin.debug:
+        msg: "Subnet is {{item.0}} and Gateway is {{item.1}}"
+      loop: "{{ dest_subs | zip_longest(dest_gws) | list }}"
