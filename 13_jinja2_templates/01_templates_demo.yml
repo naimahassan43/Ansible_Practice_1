@@ -21,15 +21,26 @@
       # - debug: msg="{{ ios_conf }}"
 
 ########### for loop #########################
+    # - name: Template for for_loop 
+    #   ansible.builtin.set_fact:
+    #     route_list: "{{ dest_subs | zip_longest(dest_gws) | list }}"
+      
+    # - debug: msg="{{ route_list }}"
+
+    # - name: Generate Conf 
+    #   ansible.builtin.template:
+    #     src: templates/for_loop.j2
+    #     dest: "demo_files/{{ inventory_hostname }}_ip_route_conf.txt"
+    
+    # - debug: msg="{{ groups }}"
+
+    ########## jinja2 include option ##################
     - name: Template for for_loop 
       ansible.builtin.set_fact:
         route_list: "{{ dest_subs | zip_longest(dest_gws) | list }}"
-      
-    - debug: msg="{{ route_list }}"
 
-    - name: Generate Conf 
+    - name: Jinja2 include option
       ansible.builtin.template:
-        src: templates/for_loop.j2
-        dest: "demo_files/{{ inventory_hostname }}_ip_route_conf.txt"
+        src: templates/include_demo.j2
+        dest: "demo_files/{{ inventory_hostname }}_include_all_conf.txt"
     
-    - debug: msg="{{ groups }}"
