@@ -3,3 +3,7 @@ ospf_vars:
   area: 0
   net: 192.168.100.0
   witldcard: 0.0.0.255
+
+r1_location: dc1
+r2_location: dc2
+r3_location: dc3

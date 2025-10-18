@@ -14,12 +14,19 @@
           #- "{{ lookup('file', 'ios_conf.txt', errors='strict', lstrip=True, rstrip=False) }}"
 
   ############ Template lookup ########
-    - name: Template lookup Plugin
+    # - name: Template lookup Plugin
+    #   ansible.builtin.debug:
+    #     msg:
+    #       - "{{ lookup('template', 'ospf_conf.j2') }}"
+    #       - "{{ lookup('template', 'ospf_conf.j2', 
+    #                                 comment_start_string='[#', comment_end_string='#]', 
+    #                                 template_vars={'net2': '192.168.101.0'},
+    #                                 variable_start_string='[%',
+    #                                 variable_end_string='%]') }}"
+
+  ############ Vars lookup ########
+    - name: Vars lookup Plugin
       ansible.builtin.debug:
         msg:
-          #- "{{ lookup('template', 'ospf_conf.j2') }}"
-          - "{{ lookup('template', 'ospf_conf.j2', 
-                                    comment_start_string='[#', comment_end_string='#]', 
-                                    template_vars={'net2': '192.168.101.0'},
-                                    variable_start_string='[%',
-                                    variable_end_string='%]') }}"
+          #- "{{ lookup('vars', '{{inventory_hostname}}_location') }}" [embedded {{inventory_hostname}} inside another Jinja template string will soon be invalid.]#
+          - "{{ lookup('vars', inventory_hostname + '_location') }}"
