@@ -1,0 +1,4 @@
+[# This is ospf config #]
+router ospf {{ospf_vars.process_id}}
+    network {{ospf_vars.net}} {{ospf_vars.witldcard}} area {{ospf_vars.area}}
+    network [% net2 %] {{ospf_vars.witldcard}} area {{ospf_vars.area}}
