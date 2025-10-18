@@ -1,0 +1,10 @@
+---
+- name: Play options- Debugger 
+  hosts: demo01
+  gather_facts: false
+  #strategy: debug
+  tasks: 
+    - name: Print hostname
+      ansible.builtin.debug:
+        msg: "{{inventory_hostname1}}"
+      debugger: on_failed
