@@ -1,0 +1,24 @@
+---
+- name: Task Options- delegate_to
+  hosts: r2
+  gather_facts: false
+  tasks:
+    - name: Gather Static Route from R3
+      cisco.ios.ios_static_routes:
+        state: gathered
+      delegate_to: r3
+      register: r3_static_route
+
+    - name: Print R3 Output
+      ansible.builtin.debug:
+        msg: "{{ r3_static_route }}"
+    
+    - name: Config Static Route
+      cisco.ios.ios_static_routes:
+        config: "{{ r3_static_route.gathered}}"
+        state: merged
+      register: r2_config
+    
+    - name: Print R2 Output
+      ansible.builtin.debug:
+        msg: "{{ r2_config }}"
