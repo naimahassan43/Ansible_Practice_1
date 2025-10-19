@@ -1,0 +1,102 @@
+2025-10-19 21:54:54,615 p=9369 u=naima n=ansible INFO| ansible-playbook [core 2.19.3]
+  config file = /home/naima/Ansible_Practice_1/ansible.cfg
+  configured module search path = ['/home/naima/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/naima/py_venv/venv1/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/naima/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/naima/py_venv/venv1/bin/ansible-playbook
+  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/home/naima/py_venv/venv1/bin/python)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+2025-10-19 21:54:54,615 p=9369 u=naima n=ansible INFO| Using /home/naima/Ansible_Practice_1/ansible.cfg as config file
+2025-10-19 21:54:54,653 p=9369 u=naima n=ansible INFO| host_list declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:54:54,653 p=9369 u=naima n=ansible INFO| script declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:54:54,657 p=9369 u=naima n=ansible INFO| Parsed /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml inventory source with yaml plugin
+2025-10-19 21:54:54,701 p=9369 u=naima n=ansible INFO| Skipping callback 'minimal', as we already have a stdout callback.
+2025-10-19 21:54:54,701 p=9369 u=naima n=ansible INFO| Skipping callback 'oneline', as we already have a stdout callback.
+2025-10-19 21:54:54,701 p=9369 u=naima n=ansible INFO| PLAYBOOK: 06_no_log.yml ************************************************************************************************************
+2025-10-19 21:54:54,701 p=9369 u=naima n=ansible INFO| 1 plays in 17_task_options/06_no_log.yml
+2025-10-19 21:54:54,702 p=9369 u=naima n=ansible INFO| PLAY [Configure domain name] *******************************************************************************************************
+2025-10-19 21:54:54,706 p=9369 u=naima n=ansible INFO| TASK [Configure user] **************************************************************************************************************
+2025-10-19 21:54:54,706 p=9369 u=naima n=ansible INFO| task path: /home/naima/Ansible_Practice_1/17_task_options/06_no_log.yml:6
+2025-10-19 21:54:54,744 p=9369 u=naima n=ansible INFO| redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+2025-10-19 21:54:55,055 p=9369 u=naima n=ansible INFO| network_os is set to cisco.ios.ios
+2025-10-19 21:54:55,058 p=9379 u=naima n=ansible INFO| <192.168.117.62> USING PYLIBSSH VERSION 1.2.2
+2025-10-19 21:54:55,058 p=9379 u=naima n=ansible INFO| <192.168.117.62> ESTABLISH LIBSSH CONNECTION FOR USER: admin on PORT 22 TO 192.168.117.62
+2025-10-19 21:54:55,299 p=9379 u=naima n=ansible INFO| ssh connection is OK: <pylibsshext.session.Session object at 0x7124fe72d0d0>
+2025-10-19 21:54:57,358 p=9369 u=naima n=ansible WARNING| [WARNING]: To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device
+
+2025-10-19 21:54:57,358 p=9369 u=naima n=ansible INFO| changed: [r2] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": true
+}
+2025-10-19 21:54:57,359 p=9369 u=naima n=ansible INFO| PLAY RECAP *************************************************************************************************************************
+2025-10-19 21:54:57,359 p=9369 u=naima n=ansible INFO| r2                         : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-10-19 21:54:57,460 p=9379 u=naima n=ansible INFO| shutdown complete
+2025-10-19 21:56:37,287 p=9446 u=naima n=ansible INFO| ansible-playbook [core 2.19.3]
+  config file = /home/naima/Ansible_Practice_1/ansible.cfg
+  configured module search path = ['/home/naima/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/naima/py_venv/venv1/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/naima/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/naima/py_venv/venv1/bin/ansible-playbook
+  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/home/naima/py_venv/venv1/bin/python)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+2025-10-19 21:56:37,287 p=9446 u=naima n=ansible INFO| Using /home/naima/Ansible_Practice_1/ansible.cfg as config file
+2025-10-19 21:56:37,324 p=9446 u=naima n=ansible INFO| host_list declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:56:37,324 p=9446 u=naima n=ansible INFO| script declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:56:37,327 p=9446 u=naima n=ansible INFO| Parsed /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml inventory source with yaml plugin
+2025-10-19 21:56:37,371 p=9446 u=naima n=ansible INFO| Skipping callback 'minimal', as we already have a stdout callback.
+2025-10-19 21:56:37,371 p=9446 u=naima n=ansible INFO| Skipping callback 'oneline', as we already have a stdout callback.
+2025-10-19 21:56:37,371 p=9446 u=naima n=ansible INFO| PLAYBOOK: 06_no_log.yml ************************************************************************************************************
+2025-10-19 21:56:37,371 p=9446 u=naima n=ansible INFO| 1 plays in 17_task_options/06_no_log.yml
+2025-10-19 21:56:37,372 p=9446 u=naima n=ansible INFO| PLAY [Configure domain name] *******************************************************************************************************
+2025-10-19 21:56:37,376 p=9446 u=naima n=ansible INFO| TASK [Configure user] **************************************************************************************************************
+2025-10-19 21:56:37,376 p=9446 u=naima n=ansible INFO| task path: /home/naima/Ansible_Practice_1/17_task_options/06_no_log.yml:6
+2025-10-19 21:56:37,413 p=9446 u=naima n=ansible INFO| redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+2025-10-19 21:56:37,722 p=9446 u=naima n=ansible INFO| network_os is set to cisco.ios.ios
+2025-10-19 21:56:37,726 p=9456 u=naima n=ansible INFO| <192.168.117.62> USING PYLIBSSH VERSION 1.2.2
+2025-10-19 21:56:37,726 p=9456 u=naima n=ansible INFO| <192.168.117.62> ESTABLISH LIBSSH CONNECTION FOR USER: admin on PORT 22 TO 192.168.117.62
+2025-10-19 21:56:37,965 p=9456 u=naima n=ansible INFO| ssh connection is OK: <pylibsshext.session.Session object at 0x74104db3c090>
+2025-10-19 21:56:39,963 p=9446 u=naima n=ansible WARNING| [WARNING]: To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device
+
+2025-10-19 21:56:39,963 p=9446 u=naima n=ansible INFO| changed: [r2] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": true
+}
+2025-10-19 21:56:39,965 p=9446 u=naima n=ansible INFO| PLAY RECAP *************************************************************************************************************************
+2025-10-19 21:56:39,965 p=9446 u=naima n=ansible INFO| r2                         : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-10-19 21:56:40,065 p=9456 u=naima n=ansible INFO| shutdown complete
+2025-10-19 21:57:26,216 p=9520 u=naima n=ansible INFO| ansible-playbook [core 2.19.3]
+  config file = /home/naima/Ansible_Practice_1/ansible.cfg
+  configured module search path = ['/home/naima/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/naima/py_venv/venv1/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/naima/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/naima/py_venv/venv1/bin/ansible-playbook
+  python version = 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (/home/naima/py_venv/venv1/bin/python)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+2025-10-19 21:57:26,216 p=9520 u=naima n=ansible INFO| Using /home/naima/Ansible_Practice_1/ansible.cfg as config file
+2025-10-19 21:57:26,253 p=9520 u=naima n=ansible INFO| host_list declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:57:26,253 p=9520 u=naima n=ansible INFO| script declined parsing /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml as it did not pass its verify_file() method
+2025-10-19 21:57:26,257 p=9520 u=naima n=ansible INFO| Parsed /home/naima/Ansible_Practice_1/inventory/cisco_inv_ssh_key.yml inventory source with yaml plugin
+2025-10-19 21:57:26,300 p=9520 u=naima n=ansible INFO| Skipping callback 'minimal', as we already have a stdout callback.
+2025-10-19 21:57:26,300 p=9520 u=naima n=ansible INFO| Skipping callback 'oneline', as we already have a stdout callback.
+2025-10-19 21:57:26,300 p=9520 u=naima n=ansible INFO| PLAYBOOK: 06_no_log.yml ************************************************************************************************************
+2025-10-19 21:57:26,300 p=9520 u=naima n=ansible INFO| 1 plays in 17_task_options/06_no_log.yml
+2025-10-19 21:57:26,301 p=9520 u=naima n=ansible INFO| PLAY [Task Options- no_log] ********************************************************************************************************
+2025-10-19 21:57:26,306 p=9520 u=naima n=ansible INFO| TASK [Configure user] **************************************************************************************************************
+2025-10-19 21:57:26,306 p=9520 u=naima n=ansible INFO| task path: /home/naima/Ansible_Practice_1/17_task_options/06_no_log.yml:6
+2025-10-19 21:57:26,343 p=9520 u=naima n=ansible INFO| redirecting (type: become) ansible.builtin.enable to ansible.netcommon.enable
+2025-10-19 21:57:26,647 p=9520 u=naima n=ansible INFO| network_os is set to cisco.ios.ios
+2025-10-19 21:57:26,651 p=9530 u=naima n=ansible INFO| <192.168.117.62> USING PYLIBSSH VERSION 1.2.2
+2025-10-19 21:57:26,651 p=9530 u=naima n=ansible INFO| <192.168.117.62> ESTABLISH LIBSSH CONNECTION FOR USER: admin on PORT 22 TO 192.168.117.62
+2025-10-19 21:57:26,891 p=9530 u=naima n=ansible INFO| ssh connection is OK: <pylibsshext.session.Session object at 0x7e53909c1f80>
+2025-10-19 21:57:28,928 p=9520 u=naima n=ansible WARNING| [WARNING]: To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device
+
+2025-10-19 21:57:28,929 p=9520 u=naima n=ansible INFO| changed: [r2] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": true
+}
+2025-10-19 21:57:28,930 p=9520 u=naima n=ansible INFO| PLAY RECAP *************************************************************************************************************************
+2025-10-19 21:57:28,931 p=9520 u=naima n=ansible INFO| r2                         : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-10-19 21:57:29,030 p=9530 u=naima n=ansible INFO| shutdown complete
