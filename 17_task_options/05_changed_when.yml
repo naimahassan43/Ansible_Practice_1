@@ -1,0 +1,14 @@
+---
+- name: Task Options- changed_when
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Execute Shell
+      ansible.builtin.shell: ls
+      register: pwd_output
+      changed_when: pwd_output.stdout != '/home/naima/Ansible_Practice_1/17_task_options'
+      failed_when: pwd_output.stdout != '/home/naima/Ansible_Practice_1/17_task_options'
+
+    - name: Print Shell Output
+      ansible.builtin.debug:
+        msg: "{{ pwd_output.stdout }}"
