@@ -138,7 +138,7 @@
 
 # (pathlist) Comma-separated list of Ansible inventory sources
 ;inventory=['/etc/ansible/hosts']
-inventory=/home/naima/Ansible_Practice_1/16_ansible_play_options/inventory.yml
+;inventory=/home/naima/Ansible_Practice_1/16_ansible_play_options/inventory.yml
 
 # (pathspec) Colon-separated paths in which Ansible will search for HttpApi Plugins.
 ;httpapi_plugins=/home/naima/.ansible/plugins/httpapi:/usr/share/ansible/plugins/httpapi
