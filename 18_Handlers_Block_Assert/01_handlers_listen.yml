@@ -1,0 +1,33 @@
+- name: Handlers and listen option
+  hosts: r2
+  gather_facts: false
+  tasks:
+########  handlers ##########################
+    - name: L3 Config
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: GigabitEthernet0/1
+            ipv4:
+              - address: 10.10.10.1/28
+        state: merged
+      register: l3_config_output
+      notify:
+        - ip change post action
+
+    - name: Print Output
+      ansible.builtin.debug:
+        msg: "{{ l3_config_output }}"
+
+  handlers:
+    - name: Save config
+      cisco.ios.ios_config:
+        backup: true
+        backup_options:
+          dir_path: './18_Handlers_Block_Assert/backup'
+        save_when: always
+      listen: ip change post action
+    
+    - name: Print Command
+      ansible.builtin.debug:
+        msg: "{{ l3_config_output.commands }}"
+      listen: ip change post action
