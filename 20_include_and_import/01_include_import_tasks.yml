@@ -23,11 +23,11 @@
         v: 0
 
       ######## Include Task ###########
-    # - name: Include Task
-    #   ansible.builtin.include_tasks: user_conf.yml
-    #   when: v == 0
+    - name: Include Task
+      ansible.builtin.include_tasks: user_conf.yml
+      loop: [a1, a2, a3]
       
       ######## Import Task ###########
-    - name: Import Task
-      ansible.builtin.import_tasks: user_conf.yml
-      when: v == 0
+    # - name: Import Task
+    #   ansible.builtin.import_tasks: user_conf.yml
+      
