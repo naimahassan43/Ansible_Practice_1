@@ -8,7 +8,7 @@
 
 - name: Print message
   ansible.builtin.debug:
-    msg: "Successfully generated conf for {{ new_user }} var_from_inv"
+    msg: "Successfully generated conf for {{ new_user }} {{var_from_inv}}"
 
 - name: Print V
   ansible.builtin.debug:

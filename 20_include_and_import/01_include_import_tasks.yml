@@ -24,10 +24,10 @@
 
       ######## Include Task ###########
     - name: Include Task
-      ansible.builtin.include_tasks: user_conf.yml
-      loop: [a1, a2, a3]
+      ansible.builtin.include_tasks: "{{file_name}}"
+      # loop: [a1, a2, a3]
       
       ######## Import Task ###########
     # - name: Import Task
-    #   ansible.builtin.import_tasks: user_conf.yml
+    #   ansible.builtin.import_tasks: "{{file_name}}"
       

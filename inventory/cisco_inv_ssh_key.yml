@@ -72,3 +72,7 @@ all:
       hosts:
         local_test:
           ansible_connection: local
+        localhost:
+          ansible_connection: local
+          var_from_inv: "this is from inventory"
+          file_name: user_conf.yml
