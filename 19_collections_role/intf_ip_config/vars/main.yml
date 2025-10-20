@@ -1,0 +1,4 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for intf_ip_config
+intf_address: 10.10.10.1/28

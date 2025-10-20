@@ -1,0 +1,5 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for intf_ip_config
+bkp_file_path: '/home/naima/Ansible_Practice_1/19_collections_role/backup'
+intf_address: 10.10.10.2/28
