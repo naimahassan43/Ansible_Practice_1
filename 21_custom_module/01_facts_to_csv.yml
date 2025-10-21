@@ -23,4 +23,12 @@
     - name: Facts to CSV task
       facts_to_csv:
         device_facts: "{{ facts_dict }}"
+        dest_csv_path: '/home/naima/Ansible_Practice_1/21_custom_module'
+        dest_csv_file: new_file.csv
+      run_once: true
+      register: module_output
+
+    - name: Print Custom Module Output
+      ansible.builtin.debug:
+        msg: "{{ module_output }}"
       run_once: true
