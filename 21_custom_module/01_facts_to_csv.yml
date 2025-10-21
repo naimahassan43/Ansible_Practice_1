@@ -18,3 +18,9 @@
     - name: Print Facts dict
       ansible.builtin.debug:
         msg: "{{ facts_dict }}"
+      run_once: true
+    
+    - name: Facts to CSV task
+      facts_to_csv:
+        device_facts: "{{ facts_dict }}"
+      run_once: true

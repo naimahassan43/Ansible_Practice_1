@@ -1,0 +1,4 @@
+inventory_name,hostname,model,version,serial_number
+r1,R1,IOSv,15.6(2)T,926U8Z887M0WS05QSU2Z3
+r2,R2,IOSv,15.6(2)T,9ZW2QF6D8O016EAP9U46T
+r3,R3,CSR1000V,16.08.01a,90FT2FXJ4N9
