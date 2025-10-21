@@ -13,7 +13,7 @@ def main():
         device_facts= module.params['device_facts']
         sorted_device_facts = dict(sorted(device_facts.items()))
         csv_filename= f"{module.params['dest_csv_path']}/{module.params['dest_csv_file']}"
-        csv_header = ["inventory_name", "hostname", "model", "version", "serial_number"]
+        csv_header = ["inventory_name", "device_ip", "hostname", "model", "version", "serial_number"]
 
         with open(csv_filename, 'w') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=csv_header)
@@ -21,10 +21,11 @@ def main():
             for device, details in sorted_device_facts.items():
                 writer.writerow({
                     "inventory_name": device, 
-                    "hostname": details['net_hostname'], 
-                    "model": details['net_model'],
-                    "version": details['net_version'], 
-                    "serial_number": details['net_serialnum']
+                    "device_ip": details['ansible_host'],
+                    "hostname": details['ansible_facts']['net_hostname'],
+                    "model": details['ansible_facts']['net_model'],
+                    "version": details['ansible_facts']['net_version'], 
+                    "serial_number": details['ansible_facts']['net_serialnum']
                     })
                 
         module.exit_json(changed=True, output="Saved content to csv")

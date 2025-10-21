@@ -6,12 +6,13 @@
     - name: Print Facts
       ansible.builtin.debug:
         msg: 
-          #- "{{ ansible_facts }}"
+          - "{{ ansible_facts }}"
           - "{{ ansible_play_hosts }}"
+          - "{{ hostvars['r1'] }}"
     
     - name: Create Facts dict
       ansible.builtin.set_fact:
-        facts_dict: "{{ facts_dict | default({}) | combine({ item: hostvars[item]['ansible_facts']})}}"
+        facts_dict: "{{ facts_dict | default({}) | combine({ item: hostvars[item]})}}"
       loop: "{{ ansible_play_hosts }}"
       run_once: true
     
