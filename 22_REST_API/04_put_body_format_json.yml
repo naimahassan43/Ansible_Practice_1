@@ -1,5 +1,5 @@
 ---
-- name: REST API- Put Body Format JSON
+- name: REST API- Put Body Format
   hosts: r4
   gather_facts: false
   tasks:
