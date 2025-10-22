@@ -1,0 +1,24 @@
+---
+- name: REST API- Patch Static Route
+  hosts: r4
+  gather_facts: false
+  tasks:
+    - name: Patch Config
+      ansible.builtin.uri:
+        url: https://{{ ansible_host }}/restconf/data/Cisco-IOS-XE-native:native/ip/route
+        method: PATCH
+        body: "{{lookup('file', 'static_route.json') | from_json}}"
+        body_format: json
+        headers:
+          Accept: application/yang-data+json
+          Authorization: "Basic YWRtaW46YWRtaW4="
+          Content-Type: application/yang-data+json 
+        validate_certs: false
+        status_code: 204,201
+      register: device_conf
+
+    - name: Print Output
+      ansible.builtin.debug:
+        msg: 
+          - "{{ device_conf }}"
+        
