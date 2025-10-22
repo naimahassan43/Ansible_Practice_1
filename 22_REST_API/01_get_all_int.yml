@@ -1,5 +1,5 @@
 ---
-- name: REST API Get
+- name: REST API- Get
   hosts: r4
   gather_facts: false
   tasks:
