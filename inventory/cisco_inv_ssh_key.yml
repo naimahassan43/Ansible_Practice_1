@@ -54,6 +54,8 @@ all:
           hosts:
             r3:
               ansible_host: 192.168.117.63
+            r4:
+              ansible_host: 192.168.117.64
         vios_group:
           hosts:
             r1:
